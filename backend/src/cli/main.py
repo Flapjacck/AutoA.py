@@ -3,15 +3,18 @@
 import sys
 
 from src.cli.theme import console, print_banner, print_error
-from src.cli.commands import cmd_help
+from src.cli.commands import cmd_help, cmd_scrape
 from src.cli.commands.jobs import jobs_command_handler
 from src.logger import get_logger
 
 logger = get_logger(__name__)
 
 
-def main_cli() -> None:
-    """Interactive CLI shell for job listing management."""
+def main_cli(argv: list[str] | None = None) -> None:
+    """Interactive CLI shell or direct command entry point."""
+    if argv is None:
+        argv = sys.argv[1:]
+
     # Force UTF-8 encoding for better output
     if sys.stdout and hasattr(sys.stdout, 'reconfigure'):
         try:
@@ -23,6 +26,26 @@ def main_cli() -> None:
     console.clear()
     print_banner()
     cmd_help()
+
+    if argv:
+        cmd = argv[0].lower()
+        args = argv[1:]
+        if cmd in ["exit", "quit", "q"]:
+            console.print("\n[success]✓ Goodbye![/success]\n")
+            return
+        elif cmd == "help":
+            cmd_help()
+            return
+        elif cmd == "jobs":
+            jobs_command_handler(args)
+            return
+        elif cmd == "scrape":
+            cmd_scrape(args)
+            return
+        else:
+            print_error(f"Unknown command: {cmd}")
+            console.print("[muted]Type 'help' for available commands[/muted]\n")
+            return
 
     while True:
         try:
@@ -45,6 +68,8 @@ def main_cli() -> None:
                 cmd_help()
             elif cmd == "jobs":
                 jobs_command_handler(args)
+            elif cmd == "scrape":
+                cmd_scrape(args)
             else:
                 print_error(f"Unknown command: {cmd}")
                 console.print("[muted]Type 'help' for available commands[/muted]\n")

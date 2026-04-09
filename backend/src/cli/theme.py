@@ -32,7 +32,7 @@ def print_banner() -> None:
     """Display app banner on startup."""
     console.print("\n[header]╔════════════════════════════════════════════════════╗[/header]")
     console.print("[header]║                                                    ║[/header]")
-    console.print("[header]║     AutoA.py - Resume Tailoring Tool              ║[/header]")
+    console.print("[header]║     AutoA.py - Resume Tailoring Tool               ║[/header]")
     console.print("[header]║                                                    ║[/header]")
     console.print("[header]╚════════════════════════════════════════════════════╝[/header]\n")
 

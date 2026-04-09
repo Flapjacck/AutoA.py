@@ -26,6 +26,11 @@ def cmd_help() -> None:
         "jobs -u  |  jobs -u 1"
     )
     table.add_row(
+        "scrape <url>",
+        "Auto-detect and scrape Workday, Lever, Ashby, iCIMS, or fallback",
+        "scrape https://jobs.lever.co/..."
+    )
+    table.add_row(
         "help",
         "Show this help message",
         "help"
