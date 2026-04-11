@@ -31,6 +31,11 @@ def cmd_help() -> None:
         "scrape 1  |  scrape https://..."
     )
     table.add_row(
+        "prompt <id>",
+        "Generate AI prompt for resume tailoring (copies to clipboard)",
+        "prompt 1  |  prompt 3"
+    )
+    table.add_row(
         "help",
         "Show this help message",
         "help"

@@ -5,6 +5,7 @@ import sys
 from src.cli.theme import console, print_banner, print_error
 from src.cli.commands import cmd_help, cmd_scrape
 from src.cli.commands.jobs import jobs_command_handler
+from src.cli.commands.prompt import cmd_prompt
 from src.logger import get_logger
 
 logger = get_logger(__name__)
@@ -42,6 +43,9 @@ def main_cli(argv: list[str] | None = None) -> None:
         elif cmd == "scrape":
             cmd_scrape(args)
             return
+        elif cmd == "prompt":
+            cmd_prompt(args)
+            return
         else:
             print_error(f"Unknown command: {cmd}")
             console.print("[muted]Type 'help' for available commands[/muted]\n")
@@ -70,6 +74,8 @@ def main_cli(argv: list[str] | None = None) -> None:
                 jobs_command_handler(args)
             elif cmd == "scrape":
                 cmd_scrape(args)
+            elif cmd == "prompt":
+                cmd_prompt(args)
             else:
                 print_error(f"Unknown command: {cmd}")
                 console.print("[muted]Type 'help' for available commands[/muted]\n")
