@@ -10,6 +10,7 @@ dependencies = [
     "click>=8.1.0",
     "rich>=13.0.0",
     "playwright>=1.44.0",
+    "pyperclip>=1.8.0",
     "greenlet==3.2.4; sys_platform == 'win32' and python_version >= '3.14'",
 ]
 
