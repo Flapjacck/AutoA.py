@@ -36,6 +36,16 @@ def cmd_help() -> None:
         "prompt 1  |  prompt 3"
     )
     table.add_row(
+        "resume",
+        "Display your stored resume",
+        "resume"
+    )
+    table.add_row(
+        "resume -u",
+        "Update/set your resume (paste mode)",
+        "resume -u"
+    )
+    table.add_row(
         "help",
         "Show this help message",
         "help"

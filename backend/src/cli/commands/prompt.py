@@ -11,6 +11,7 @@ from src.posting_scrapers import (
     UnsupportedJobUrlError,
     scrape_description_for_url,
 )
+from src.cli.commands.resume import _load_resume
 
 
 # System prompt template for resume tailoring
@@ -162,6 +163,14 @@ def _generate_prompt_for_job_id(job_id: int) -> None:
             location=job.location,
             description=description,
         )
+
+        # Load and append resume if available
+        resume_content = _load_resume()
+        if resume_content:
+            prompt_text += "\n\n---\nRESUME:\n" + resume_content
+            print_info("Resume included in prompt.")
+        else:
+            print_info("⚠ No resume set. Run 'resume -u' to add your resume.")
 
         # Copy to clipboard
         _copy_to_clipboard(prompt_text)
