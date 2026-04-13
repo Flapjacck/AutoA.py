@@ -104,21 +104,27 @@ def _show_resume() -> None:
 
 
 def _update_resume() -> None:
-    """Interactive update mode: prompt user to paste resume, preview, and confirm save."""
+    """Interactive update mode: prompt user to paste resume, type END when done."""
     print_section("Resume Update")
-    print_info("Paste your resume below. On Unix/Linux/Mac, press Ctrl+D when done.")
-    print_info("On Windows, press Ctrl+Z then Enter when done.\n")
+    print_info("Paste your resume below. Type 'END' on a new line when done.\n")
 
-    # Capture multiline input
-    print("> ", end="", flush=True)
+    # Capture multiline input line by line
+    resume_lines = []
     try:
-        resume_input = sys.stdin.read()
+        while True:
+            line = sys.stdin.readline()
+            if not line:  # EOF
+                break
+            # Check if line is just "END" (with or without whitespace)
+            if line.strip().upper() == "END":
+                break
+            resume_lines.append(line)
     except KeyboardInterrupt:
         print_info("\nAborted.")
         return
-    except EOFError:
-        # Normal end of input on Unix systems
-        resume_input = ""
+
+    # Join all lines and strip trailing whitespace
+    resume_input = "".join(resume_lines).rstrip()
 
     if not resume_input:
         print_error("No input received. Resume not saved.")
