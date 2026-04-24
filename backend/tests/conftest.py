@@ -91,19 +91,6 @@ def mock_requests_timeout(monkeypatch):
     monkeypatch.setattr(requests, "get", mock_get)
 
 
-@pytest.fixture
-def sample_job_posting() -> JobPosting:
-    """Sample job posting for CLI tests."""
-    return JobPosting(
-        id=3,
-        company="Example Co",
-        role="Software Engineer Intern",
-        location="Toronto, ON",
-        url="https://example.com/jobs/3",
-        date_posted="2026-04-06",
-        posted_at_raw="Apr 6, 2026",
-    )
-
 
 
 

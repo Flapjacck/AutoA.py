@@ -187,8 +187,9 @@ class TestUpdateResume:
                         # Check success message
                         mock_success.assert_called_once_with("Resume saved successfully!")
                         
-                        # Check file was written
-                        assert temp_resume_file.read_text() == sample_resume_text
+                        # Check file was written (rstrip because _update_resume does rstrip)
+                        assert temp_resume_file.read_text() == sample_resume_text.rstrip()
+
 
     def test_update_resume_user_declines(self, temp_resume_file, sample_resume_text):
         """Test abort when user says 'no' at confirmation."""
