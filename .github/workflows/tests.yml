@@ -32,9 +32,9 @@ jobs:
       - name: Install dependencies
         run: |
           cd backend
-          uv pip install -e ".[dev]"
+          uv sync --all-extras
       
       - name: Run tests
         run: |
           cd backend
-          pytest -v --tb=short
+          uv run pytest -v --tb=short
